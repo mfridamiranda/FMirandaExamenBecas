@@ -1,0 +1,61 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contenedor">
+    <h2>Alumno</h2>
+    <p>Aqui puede ver, editar o agrgar a un alumno</p>
+    <p>Para agregar un alumno presione el boton verde</p>
+    <p>Para editar un alumno presione el boton amarillo</p>
+    <p>Para eliminar un alumno presione el boton rojo</p>
+
+    <div class="row">
+        <div style="float:right">
+            @Html.ActionLink("+", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
+
+        </div>
+    </div>
+
+    <Hr />
+    <div class="row">
+
+        <table class="table table-responsive">
+            <thead>
+                <Tr>
+                    <th>Editar</th>
+                    <th class="hidden">IdAlumno</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                    <th>Tipo de Beca</th>
+                    <th>Eliminar</th>
+                </Tr>
+
+            </thead>
+            <tbody>
+                @foreach (ML.Alumno alumno in Model.Alumnos)
+                    {
+                    <Tr>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno. IdAlumno})"></a></td>
+                        <td class="hidden">@alumno. IdAlumno</td>
+                        <TD>@alumno. Nombre @alumno. ApellidoPaterno @alumno. ApellidoMaterno</TD>
+                        <td class="hidden">@alumno. Beca.IdBeca</td>
+                        <TD>@alumno.Beca.TipodeBeca</TD>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Alumno", new { IdAlumno = alumno. IdAlumno })" onclick="return confirm('Estas seguro que deseas eliminar este registro?'); "></a></td>
+
+
+                    </Tr>
+
+                    }
+
+            </tbody>
+
+
+         </mesa>
+
+
+    </div>
+</div>
+
